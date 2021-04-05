@@ -14,3 +14,5 @@ for testing purposes
 - for adding external libraries without Maven: https://stackoverflow.com/questions/10656428/include-gson-in-my-java-program
 - for adding gson to classpath when compiling and running: https://stackoverflow.com/questions/10656428/include-gson-in-my-java-program
 - for creating a Json object using gson: https://stackoverflow.com/questions/4683856/creating-gson-object
+- inspiration for recursion: https://medium.com/swlh/how-to-use-recursion-to-flatten-a-javascript-object-17e43cc00159
+- for using reflectionEquals for asserting objects have same fields: https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/builder/EqualsBuilder.html#reflectionEquals-java.lang.Object-java.lang.Object-java.lang.String...-

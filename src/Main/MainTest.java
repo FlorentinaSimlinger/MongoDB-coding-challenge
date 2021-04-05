@@ -1,11 +1,10 @@
 package Main;
 
 import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-
 import static org.junit.jupiter.api.Assertions.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 
 public class MainTest {
 
@@ -18,8 +17,6 @@ public class MainTest {
             "        \"e\": \"test\"\n" +
             "    }\n" +
             "}";
-
-    private String complexFlattenedString = "{'a':1, 'b':true, 'c.d':3, 'c.e':'test'}";
 
     @Test
     void testConvertToSimpleJsonObject() {
@@ -38,19 +35,22 @@ public class MainTest {
     @Test
     void testFlattenSimpleJsonObject() {
         JSONObject simple = new JSONObject(simpleString);
+        JSONObject flattenedSimple = new JSONObject();
+        flattenedSimple.put("a", 1);
 
-        JSONObject flattenedSimple = new JSONObject(simpleString);
-
-        assertEquals(flattenedSimple, Main.flattenJsonObj(simple));
+        assertTrue(EqualsBuilder.reflectionEquals(Main.flattenJsonObj(simple), flattenedSimple));
     }
 
     @Test
     void testFlattenComplexJsonObject() {
-
         JSONObject complex = new JSONObject(complexString);
-        JSONObject flattenedComplex = new JSONObject(complexFlattenedString);
+        JSONObject flattenedComplex = new JSONObject();
+        flattenedComplex.put("a", 1);
+        flattenedComplex.put("b", true);
+        flattenedComplex.put("c.d", 3);
+        flattenedComplex.put("c.e", "test");
 
-        assertEquals(flattenedComplex, Main.flattenJsonObj(complex));
+        assertTrue(EqualsBuilder.reflectionEquals(Main.flattenJsonObj(complex), flattenedComplex));
     }
 
 }

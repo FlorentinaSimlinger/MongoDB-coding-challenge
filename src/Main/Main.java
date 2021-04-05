@@ -1,8 +1,5 @@
 package Main;
 
-
-
-import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -52,23 +49,23 @@ public class Main {
 
     public static JSONObject flattenJsonObjHelper(JSONObject currObj, JSONObject newObj, String prevKeyName) {
         Iterator<?> keys = currObj.keys();
-        String key = (String) keys.next();
         while (keys.hasNext()) {
             // value is a json object
+            String key = (String) keys.next();
             if (currObj.get(key) instanceof JSONObject) {
-                System.out.println("value is obj");
-                if (prevKeyName == null || prevKeyName.equals("")) {
+                // first call
+                if (prevKeyName.equals("")) {
                     return flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, key);
                 } else {
                     return flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, prevKeyName + '.' + key);
                 }
             // value is not a json object
             } else {
-                System.out.println("value is not obj");
-                if (prevKeyName == null || prevKeyName.equals("")) {
-                    return newObj.put(key, currObj.get(key));
+                // first call
+                if (prevKeyName.equals("")) {
+                    newObj.put(key, currObj.get(key));
                 } else {
-                    return newObj.put(prevKeyName + "." + key, currObj.get(key));
+                    newObj.put(prevKeyName + "." + key, currObj.get(key));
                 }
             }
         }
