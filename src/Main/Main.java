@@ -19,13 +19,12 @@ public class Main {
                 inputStr = bufReader.readLine();
                 if (inputStr != null) {
                     sb.append(inputStr);
-                    System.out.println(inputStr);
                 }
             }
             String jsonString = sb.toString();
             JSONObject inputObj = new JSONObject(jsonString);
             JSONObject flattenedObj = flattenJsonObj(inputObj);
-            System.out.println(flattenedObj);
+            System.out.println(flattenedObj.toString(4));
         } catch (IOException e) {
             e.printStackTrace();
         }
