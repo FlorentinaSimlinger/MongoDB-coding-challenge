@@ -19,25 +19,20 @@ public class MainTest {
             "    }\n" +
             "}";
 
+    private String complexFlattenedString = "{'a':1, 'b':true, 'c.d':3, 'c.e':'test'}";
 
     @Test
     void testConvertToSimpleJsonObject() {
         JSONObject simple = new JSONObject(simpleString);
 
-        assertEquals(Main.convertToJsonObj(simpleString), simple);
+        assertEquals(simple, Main.convertToJsonObj(simpleString));
     }
 
     @Test
     void testConvertToComplexJsonObject() {
-        JSONObject complex = new JSONObject(complexString);/*
-        complex.addProperty("a", 1);
-        complex.addProperty("b", true);
-        JSONObject innerOfComplex = new JSONObject();
-        innerOfComplex.addProperty("d", 3);
-        innerOfComplex.addProperty("e", "test");
-        complex.add("c", innerOfComplex);*/
+        JSONObject complex = new JSONObject(complexString);
 
-        assertEquals(Main.convertToJsonObj(complexString), complex);
+        assertEquals(complex, Main.convertToJsonObj(complexString));
     }
 
     @Test
@@ -46,26 +41,16 @@ public class MainTest {
 
         JSONObject flattenedSimple = new JSONObject(simpleString);
 
-        assertEquals(Main.flattenJsonObj(simple), flattenedSimple);
+        assertEquals(flattenedSimple, Main.flattenJsonObj(simple));
     }
 
     @Test
     void testFlattenComplexJsonObject() {
-       /* JSONObject complex = new JSONObject();
-        complex.addProperty("a", 1);
-        complex.addProperty("b", true);
-        JsonObject innerOfComplex = new JsonObject();
-        innerOfComplex.addProperty("d", 3);
-        innerOfComplex.addProperty("e", "test");
-        complex.add("c", innerOfComplex);
 
-        JSONObject flattenedComplex = new JSONObject();
-        flattenedComplex.addProperty("a", 1);
-        flattenedComplex.addProperty("b", true);
-        flattenedComplex.addProperty("c.d", 3);
-        flattenedComplex.addProperty("c.e", "test");
-*/
-        //assertEquals(Main.flattenJsonObj(complex), flattenedComplex);
+        JSONObject complex = new JSONObject(complexString);
+        JSONObject flattenedComplex = new JSONObject(complexFlattenedString);
+
+        assertEquals(flattenedComplex, Main.flattenJsonObj(complex));
     }
 
 }

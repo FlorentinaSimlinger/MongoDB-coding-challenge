@@ -2,6 +2,7 @@ package Main;
 
 
 
+import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -43,16 +44,34 @@ public class Main {
     public static JSONObject flattenJsonObj(JSONObject obj) {
         JSONObject result = new JSONObject();
 
-        /*while(keys.hasNext()) {
-            String key = keys.next();
-           *//* if (jsonObject.get(key) instanceof JSONObject) {
-                // do something with jsonObject here
-            }*//*
-        }*/
+        flattenJsonObjHelper(obj, result, "");
 
-        return obj;
+        return result;
 
     }
 
-
+    public static JSONObject flattenJsonObjHelper(JSONObject currObj, JSONObject newObj, String prevKeyName) {
+        Iterator<?> keys = currObj.keys();
+        String key = (String) keys.next();
+        while (keys.hasNext()) {
+            // value is a json object
+            if (currObj.get(key) instanceof JSONObject) {
+                System.out.println("value is obj");
+                if (prevKeyName == null || prevKeyName.equals("")) {
+                    return flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, key);
+                } else {
+                    return flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, prevKeyName + '.' + key);
+                }
+            // value is not a json object
+            } else {
+                System.out.println("value is not obj");
+                if (prevKeyName == null || prevKeyName.equals("")) {
+                    return newObj.put(key, currObj.get(key));
+                } else {
+                    return newObj.put(prevKeyName + "." + key, currObj.get(key));
+                }
+            }
+        }
+        return null;
+    }
 }
