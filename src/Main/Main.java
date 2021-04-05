@@ -26,16 +26,25 @@ public class Main {
             System.out.println("reading done");
             String jsonString = sb.toString();
             System.out.println(jsonString);
-            convertToJsonObj(jsonString);
+            JsonObject inputObj = convertToJsonObj(jsonString);
+            JsonObject flattenedObj = flattenJsonObj(inputObj);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // EFFECTS: converts input string to json object
-    private static void convertToJsonObj(String jsonString) {
+    // REQUIRES: a valid json string
+    // EFFECTS: returns a json object from the json string
+    public static JsonObject convertToJsonObj(String jsonString) {
         JsonObject obj = JsonParser.parseString(jsonString).getAsJsonObject();
         System.out.println(obj);
+        return obj;
+    }
+
+    public static JsonObject flattenJsonObj(JsonObject obj) {
+
+        return obj;
+
 
     }
 
