@@ -1,18 +1,18 @@
-# MongoDB-coding-challenge
+# Coding challenge
 
 ## Notes:
-- I used most of the time playing with different libraries. I started out with gson but realized that
-it's more difficult to traverse as relies on the use of objects. I then switched to Json from json.org.
-- I also wasted some time because I didn't set up my project to use Maven. I was unfamiliar with that as
-we never had to use it for school. I thus had to find the jar files and add them manually.
+- I used most of the time playing around with different libraries to work with Json. I started out using gson but realized that
+it's not appropriate for our use case as it relies on the use of objects. I then switched to Json from json.org.
+- I also spent some time adding those dependencies. I added the jar files manually, next time I would probably invest the time
+in using Maven.
 - If I had more time I would also look up how to avoid having to add the libraries on the classpath when
 executing the code.
 
 ## To run:
 - if not yet installed, install Java 11 by calling `sudo apt-get install openjdk-11-jdk`
 - navigate into the src folder of the project
-- `javac -cp .:../json-20210307.jar:../commons-lang3-3.12.0.jar Main/Main.java`
-- `cat path-to-json-file.json | java -cp .:../json-20210307.jar:../commons-lang3-3.12.0.jar Main/Main`
+- to compile: `javac -cp .:../json-20210307.jar:../commons-lang3-3.12.0.jar Main/Main.java`
+- to run: `cat path-to-json-file.json | java -cp .:../json-20210307.jar:../commons-lang3-3.12.0.jar Main/Main`
 where `path-to-json-file.json` is for instance `../basic.json` for the test file I added
 for testing purposes
 

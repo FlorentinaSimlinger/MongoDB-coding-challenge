@@ -45,7 +45,6 @@ public class Main {
     public static void flattenJsonObjHelper(JSONObject currObj, JSONObject newObj, String prevKeyName) {
         Iterator<?> keys = currObj.keys();
         while (keys.hasNext()) {
-            // value is a json object
             String key = (String) keys.next();
             if (currObj.get(key) instanceof JSONObject) {
                 if (key == null || prevKeyName.equals("")) {
@@ -54,7 +53,6 @@ public class Main {
                     flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, prevKeyName + '.' + key);
                 }
             } else {
-                // first call
                 if (key == null || prevKeyName.equals("")) {
                     newObj.put(key, currObj.get(key));
                 } else {
