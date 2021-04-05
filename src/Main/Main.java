@@ -42,28 +42,25 @@ public class Main {
     }
 
     // EFFECTS: returns the flattened json object
-    public static JSONObject flattenJsonObjHelper(JSONObject currObj, JSONObject newObj, String prevKeyName) {
+    public static void flattenJsonObjHelper(JSONObject currObj, JSONObject newObj, String prevKeyName) {
         Iterator<?> keys = currObj.keys();
         while (keys.hasNext()) {
             // value is a json object
             String key = (String) keys.next();
             if (currObj.get(key) instanceof JSONObject) {
-                // first call
-                if (prevKeyName.equals("")) {
-                    return flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, key);
+                if (key == null || prevKeyName.equals("")) {
+                    flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, key);
                 } else {
-                    return flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, prevKeyName + '.' + key);
+                    flattenJsonObjHelper((JSONObject) currObj.get(key), newObj, prevKeyName + '.' + key);
                 }
-            // value is not a json object
             } else {
                 // first call
-                if (prevKeyName.equals("")) {
+                if (key == null || prevKeyName.equals("")) {
                     newObj.put(key, currObj.get(key));
                 } else {
                     newObj.put(prevKeyName + "." + key, currObj.get(key));
                 }
             }
         }
-        return null;
     }
 }
