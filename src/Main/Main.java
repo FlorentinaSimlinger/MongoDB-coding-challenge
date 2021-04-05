@@ -22,22 +22,17 @@ public class Main {
                     System.out.println(inputStr);
                 }
             }
-            System.out.println("reading done");
             String jsonString = sb.toString();
-            System.out.println(jsonString);
-            JSONObject inputObj = convertToJsonObj(jsonString);
+            JSONObject inputObj = new JSONObject(jsonString);
             JSONObject flattenedObj = flattenJsonObj(inputObj);
+            System.out.println(flattenedObj);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // REQUIRES: a valid json string
-    // EFFECTS: returns a json object from the json string
-    public static JSONObject convertToJsonObj(String jsonString) {
-        return new JSONObject(jsonString);
-    }
 
+    // EFFECTS: returns the flattened json object by calling the helper method
     public static JSONObject flattenJsonObj(JSONObject obj) {
         JSONObject result = new JSONObject();
 
@@ -47,6 +42,7 @@ public class Main {
 
     }
 
+    // EFFECTS: returns the flattened json object
     public static JSONObject flattenJsonObjHelper(JSONObject currObj, JSONObject newObj, String prevKeyName) {
         Iterator<?> keys = currObj.keys();
         while (keys.hasNext()) {

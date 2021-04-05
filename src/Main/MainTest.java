@@ -18,19 +18,6 @@ public class MainTest {
             "    }\n" +
             "}";
 
-    @Test
-    void testConvertToSimpleJsonObject() {
-        JSONObject simple = new JSONObject(simpleString);
-
-        assertEquals(simple, Main.convertToJsonObj(simpleString));
-    }
-
-    @Test
-    void testConvertToComplexJsonObject() {
-        JSONObject complex = new JSONObject(complexString);
-
-        assertEquals(complex, Main.convertToJsonObj(complexString));
-    }
 
     @Test
     void testFlattenSimpleJsonObject() {

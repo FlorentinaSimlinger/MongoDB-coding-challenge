@@ -1,5 +1,11 @@
 # MongoDB-coding-challenge
 
+## Notes:
+- I used most of the time playing with different libraries. I started out with gson but realized that
+it's more difficult to traverse as relies on the use of objects. I then switched to Json from json.org.
+- I also wasted some time because I didn't set up my project to use Maven. I was unfamiliar with that as
+we never had to use it for school. I thus had to find the jar files and add them manually.
+
 ## To run:
 - install Java 11
 - navigate into the src folder of the project
