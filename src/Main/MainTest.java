@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-
 public class MainTest {
 
     private String simpleString = "{ 'a' : 1}";
@@ -17,6 +16,7 @@ public class MainTest {
             "        \"e\": \"test\"\n" +
             "    }\n" +
             "}";
+    private String nestedString = "{'a':{'b':{'c':{'d':{'e': 10}}}}}";
 
 
     @Test
@@ -38,6 +38,15 @@ public class MainTest {
         flattenedComplex.put("c.e", "test");
 
         assertTrue(EqualsBuilder.reflectionEquals(Main.flattenJsonObj(complex), flattenedComplex));
+    }
+
+    @Test
+    void testFlattenVeryNestedJsonObject() {
+        JSONObject nested = new JSONObject(nestedString);
+        JSONObject flattenedNested = new JSONObject();
+        flattenedNested.put("a.b.c.d.e", 10);
+
+        assertTrue(EqualsBuilder.reflectionEquals(Main.flattenJsonObj(nested), flattenedNested));
     }
 
 }
