@@ -1,12 +1,13 @@
 package Main;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 
 public class Main {
 
@@ -26,8 +27,8 @@ public class Main {
             System.out.println("reading done");
             String jsonString = sb.toString();
             System.out.println(jsonString);
-            JsonObject inputObj = convertToJsonObj(jsonString);
-            JsonObject flattenedObj = flattenJsonObj(inputObj);
+            JSONObject inputObj = convertToJsonObj(jsonString);
+            JSONObject flattenedObj = flattenJsonObj(inputObj);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,16 +36,21 @@ public class Main {
 
     // REQUIRES: a valid json string
     // EFFECTS: returns a json object from the json string
-    public static JsonObject convertToJsonObj(String jsonString) {
-        JsonObject obj = JsonParser.parseString(jsonString).getAsJsonObject();
-        System.out.println(obj);
-        return obj;
+    public static JSONObject convertToJsonObj(String jsonString) {
+        return new JSONObject(jsonString);
     }
 
-    public static JsonObject flattenJsonObj(JsonObject obj) {
+    public static JSONObject flattenJsonObj(JSONObject obj) {
+        JSONObject result = new JSONObject();
+
+        /*while(keys.hasNext()) {
+            String key = keys.next();
+           *//* if (jsonObject.get(key) instanceof JSONObject) {
+                // do something with jsonObject here
+            }*//*
+        }*/
 
         return obj;
-
 
     }
 
